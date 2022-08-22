@@ -1,15 +1,15 @@
 # Unprotect DMaaS M365 Mailboxes using PowerShell
 Warning: this code is provided on a best effort basis and is not in any way officially supported or sanctioned by Cohesity. The code is intentionally kept simple to retain value as example code. The code in this repository is provided as-is and the author accepts no liability for damages resulting from its use.
 
-This powershell script removes protection for DMaaS M365 Mailboxes. This script was created for the purpose of automating the offboarding of M365 users. 
+This powershell script removes protection for DMaaS M365 OneDrives. This script was created for the purpose of automating the offboarding of M365 users. 
 
 Download the script
 Run these commands from PowerShell to download the script(s) into your current directory
 
 ~~~
 # Download Commands
-$scriptName = 'UnprotectDmaasM365Mailboxes' 
-$repoURL = 'https://raw.githubusercontent.com/danfrankenstein/UnprotectDMaaSM365Mailboxes/main' 
+$scriptName = 'UnprotectDmaasM365OneDrives' 
+$repoURL = 'https://raw.githubusercontent.com/danfrankenstein/UnprotectDmaasM365OneDrives/main' 
 (Invoke-WebRequest -UseBasicParsing -Uri "$repoUrl/$scriptName.ps1").content | Out-File "$scriptName.ps1"; (Get-Content "$scriptName.ps1") | Set-Content "$scriptName.ps1" 
 (Invoke-WebRequest -UseBasicParsing -Uri "$repoUrl/cohesity-api.ps1").content | Out-File cohesity-api.ps1; (Get-Content cohesity-api.ps1) | Set-Content cohesity-api.ps1
 # End Download Commands
@@ -20,18 +20,18 @@ $repoURL = 'https://raw.githubusercontent.com/danfrankenstein/UnprotectDMaaSM365
 *cohesity-api.ps1: the Cohesity REST API helper module
 Place both files in a folder together and run the main script like so:
 ~~~
-./unprotectDmaasM365Mailboxes.ps1 -region us-east-2 `
+./unprotectDmaasM365onedrives.ps1 -region us-east-2 `
                                 -sourceName mydomain.onmicrosoft.com `
-                                -mailboxes user1.mydomain.onmicrosoft.com, user2.mydomain.onmicrosoft.com `
-                                -mailboxList ./mailboxlist.txt
+                                -users user1.mydomain.onmicrosoft.com, user2.mydomain.onmicrosoft.com, Display Name `
+                                -userList ./userlist.txt
 ~~~
 # Parameters
 
 - -username: (optional) used for password storage only (default is 'DMaaS')
 - -region: DMaaS region to use
 - -sourceName: name of registered M365 protection source
-- -mailboxes: (optional) one or more mailbox "display names" or SMTP addresses (comma separated)
-- -mailboxList: (optional) text file of mailbox names or SMTP addresses (one per line)
+- -users: (optional) one or more mailbox "display names" or SMTP addresses (comma separated)
+- -userList: (optional) text file of mailbox names or SMTP addresses (one per line)
 - -pageSize: (optional) limit number of objects returned pr page (default is 50000)
 
 # Authenticating to DMaaS
