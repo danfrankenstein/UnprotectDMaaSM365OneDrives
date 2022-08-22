@@ -9,7 +9,7 @@ Run these commands from PowerShell to download the script(s) into your current d
 ~~~
 # Download Commands
 $scriptName = 'UnprotectDmaasM365OneDrives' 
-$repoURL = 'https://raw.githubusercontent.com/danfrankenstein/UnprotectDmaasM365OneDrives/main' 
+$repoURL = 'https://raw.githubusercontent.com/danfrankenstein/UnprotectDMaaSM365OneDrives/main' 
 (Invoke-WebRequest -UseBasicParsing -Uri "$repoUrl/$scriptName.ps1").content | Out-File "$scriptName.ps1"; (Get-Content "$scriptName.ps1") | Set-Content "$scriptName.ps1" 
 (Invoke-WebRequest -UseBasicParsing -Uri "$repoUrl/cohesity-api.ps1").content | Out-File cohesity-api.ps1; (Get-Content cohesity-api.ps1) | Set-Content cohesity-api.ps1
 # End Download Commands
